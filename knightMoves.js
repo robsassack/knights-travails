@@ -8,26 +8,27 @@ function validMove(move) {
 }
 
 function knightMoves(start, end) {
-  let queue = [];
-  queue.push(start);
-  let visited = Array(8).fill().map(() => Array(8));
-  visited[start[0]][start[1]] = 1;
-  let moves = Array(8).fill().map(() => Array(8).fill(0));
-  while (queue.length > 0) {
-    let current = queue.shift();
-    if (current[0] === end[0] && current[1] === end[1]) {
-      console.log(moves[current[0]][current[1]]);
-      return moves[current[0]][current[1]];
+  let queue = [[start]];
+  let board = Array(8).fill().map(() => Array(8).fill(0));
+  while (queue) {
+    let path = queue.pop();
+    let prev = path[path.length - 1];
+    if (prev[0] === end[0] && prev[1] === end[1]) {
+      console.log(`Number of steps: ${path.length-1}`);
+      console.log("Path:")
+      path.forEach(step => {
+        console.log(step);
+      });
+      return;
     }
-    for (let i=0; i<possibleMoves.length; i++) {
-      let move = [current[0] + possibleMoves[i][0], current[1] + possibleMoves[i][1]];
-      if (validMove(move) && !visited[move[0]][move[1]]) {
-        visited[move[0]][move[1]] = 1;
-        moves[move[0]][move[1]] = moves[current[0]][current[1]] + 1;
-        queue.push(move);
+    for (let i = 0; i < possibleMoves.length; i++) {
+      let move = [prev[0] + possibleMoves[i][0], prev[1] + possibleMoves[i][1]];
+      if (validMove(move) && board[move[0]][move[1]] === 0) {
+        board[move[0]][move[1]] = 1;
+        queue.unshift([...path, move]);
       }
     }
   }
 }
 
-knightMoves([0,0], [5,5]);
+knightMoves([3,3], [4, 3]);
