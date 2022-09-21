@@ -30,25 +30,25 @@ function printBoard(path) {
     board[x] = board[x].split("");
     switch (i) {
       case 1:
-        board[x][y] = "1️⃣";
+        board[x][y] = "1️⃣ ";
         break;
       case 2:
-        board[x][y] = "2️⃣";
+        board[x][y] = "2️⃣ ";
         break;
       case 3:
-        board[x][y] = "3️⃣";
+        board[x][y] = "3️⃣ ";
         break;
       case 4:
-        board[x][y] = "4️⃣";
+        board[x][y] = "4️⃣ ";
         break;
       case 5:
-        board[x][y] = "5️⃣";
+        board[x][y] = "5️⃣ ";
         break;
       case 6:
-        board[x][y] = "6️⃣";
+        board[x][y] = "6️⃣ ";
         break;
       default:
-        board[x][y] = "0️⃣";
+        board[x][y] = "0️⃣ ";
     }
     board[x] = board[x].join("");
   }
